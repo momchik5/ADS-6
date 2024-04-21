@@ -15,19 +15,19 @@ class TPQueue {
         if (count >= size) {
             throw std::string("Full");
         }
-        int index = end;
+        int now = end;
         count++;
         for (int i = begin; i < end; i++) {
             if (arr[i].prior < item.prior) {
-                index = i;
+                now = i;
                 break;
             }
         }
-        for (int i = end; i > index; i--) {
+        for (int i = end; i > now; i--) {
             arr[(i % size)] = arr[((i - 1) % size)];
         }
-        arr[(index % size)] = item;
-        end = (end + 1) % size;
+        arr[(now % size)] = item;
+        end++;
     }
     T pop() {
         if (count == 0) {
